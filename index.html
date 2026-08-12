@@ -506,7 +506,10 @@
 </head>
 
 <body>
-
+<audio id="bgMusic" loop>
+  <source src="Oasis - Champagne Supernova (Lyrics) - (320 Kbps).mp3" type="audio/mpeg">
+</audio>
+  
   <!-- =========================
        OPENING
   ========================== -->
@@ -865,12 +868,17 @@
 
     function startStory() {
 
-      document.getElementById("intro").scrollIntoView({
-        behavior: "smooth"
-      });
+  const music = document.getElementById("bgMusic");
 
-    }
+  music.volume = 0.35;
 
+  music.play();
+
+  document.getElementById("intro").scrollIntoView({
+    behavior: "smooth"
+  });
+
+}
 
     const messages = {
 
