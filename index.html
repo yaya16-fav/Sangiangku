@@ -1,0 +1,959 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SANGIANGKU — Sebuah Cerita</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #f8f0df;
+      --cream-dark: #eadcc4;
+      --tosca: #6fa89c;
+      --tosca-dark: #3f756d;
+      --sunset: #e9a078;
+      --peach: #f2c2a5;
+      --pink: #dfaaa8;
+      --brown: #654d42;
+      --white: #fffaf2;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--brown);
+      font-family: "Poppins", sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       GENERAL
+    ========================= */
+
+    section {
+      min-height: 100vh;
+      padding: 100px 7%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 55px;
+    }
+
+    .section-title .small {
+      color: var(--tosca-dark);
+      font-size: 0.8rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 600;
+      color: var(--brown);
+    }
+
+    .section-title p {
+      max-width: 650px;
+      margin: 15px auto 0;
+      line-height: 1.9;
+      opacity: 0.8;
+    }
+
+    /* =========================
+       OPENING
+    ========================= */
+
+    #opening {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      background:
+        radial-gradient(circle at 20% 20%, rgba(111,168,156,.25), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(233,160,120,.30), transparent 30%),
+        linear-gradient(
+          180deg,
+          #f7e8d3 0%,
+          #f9d6bb 45%,
+          #f1b39c 75%,
+          #e9a078 100%
+        );
+    }
+
+    .sun {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #ffe1a8;
+      box-shadow: 0 0 80px rgba(255, 214, 150, .8);
+      right: 10%;
+      top: 13%;
+      opacity: .85;
+    }
+
+    .opening-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+    }
+
+    .opening-small {
+      font-size: .8rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: var(--tosca-dark);
+    }
+
+    .opening-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(5rem, 18vw, 11rem);
+      line-height: .75;
+      font-weight: 600;
+      color: var(--brown);
+      letter-spacing: 3px;
+    }
+
+    .opening-subtitle {
+      margin: 35px auto;
+      max-width: 600px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      font-style: italic;
+    }
+
+    .start-button {
+      border: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      background: var(--tosca-dark);
+      color: white;
+      font-family: "Poppins", sans-serif;
+      cursor: pointer;
+      transition: .3s;
+      box-shadow: 0 10px 30px rgba(63,117,109,.25);
+    }
+
+    .start-button:hover {
+      transform: translateY(-4px);
+      background: var(--brown);
+    }
+
+    .scroll-text {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: .7rem;
+      letter-spacing: 3px;
+      opacity: .7;
+    }
+
+    /* =========================
+       INTRO
+    ========================= */
+
+    #intro {
+      background: var(--cream);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .intro-box {
+      max-width: 850px;
+      text-align: center;
+    }
+
+    .intro-box h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin-bottom: 30px;
+    }
+
+    .intro-box p {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      line-height: 1.8;
+    }
+
+    .highlight {
+      color: var(--tosca-dark);
+      font-weight: 600;
+    }
+
+    /* =========================
+       GALLERY
+    ========================= */
+
+    #gallery {
+      background: #f2e8d6;
+    }
+
+    .gallery {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .photo {
+      background: white;
+      padding: 10px 10px 28px;
+      box-shadow: 0 12px 30px rgba(90,60,40,.12);
+      transform: rotate(var(--rotation));
+      transition: .4s;
+    }
+
+    .photo:hover {
+      transform: rotate(0deg) translateY(-8px);
+      z-index: 3;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 270px;
+      object-fit: cover;
+      display: block;
+      background: #ddd;
+    }
+
+    .photo p {
+      font-family: "Cormorant Garamond", serif;
+      text-align: center;
+      font-size: 1.25rem;
+      margin-top: 12px;
+    }
+
+    /* =========================
+       FRIENDS
+    ========================= */
+
+    #friends {
+      background: var(--cream);
+    }
+
+    .friends-grid {
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .friend-card {
+      border: none;
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px 15px;
+      min-height: 150px;
+      cursor: pointer;
+      color: var(--brown);
+      transition: .3s;
+      box-shadow: 0 8px 25px rgba(90,60,40,.08);
+      font-family: "Poppins", sans-serif;
+    }
+
+    .friend-card:hover {
+      transform: translateY(-8px);
+      background: var(--tosca);
+      color: white;
+    }
+
+    .friend-number {
+      font-size: .7rem;
+      letter-spacing: 2px;
+      opacity: .55;
+      margin-bottom: 12px;
+    }
+
+    .friend-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .click-text {
+      margin-top: 12px;
+      font-size: .65rem;
+      opacity: .6;
+    }
+
+    /* =========================
+       MEMORY WORDS
+    ========================= */
+
+    #memories {
+      background:
+        linear-gradient(
+          180deg,
+          #dcebe5,
+          #f6ddc9,
+          #edb39d
+        );
+      text-align: center;
+    }
+
+    .memory-cloud {
+      max-width: 850px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .memory-word {
+      font-family: "Cormorant Garamond", serif;
+      background: rgba(255,255,255,.5);
+      padding: 12px 22px;
+      border-radius: 50px;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      transition: .3s;
+    }
+
+    .memory-word:hover {
+      transform: scale(1.08) rotate(-2deg);
+      background: white;
+    }
+
+    /* =========================
+       FINAL
+    ========================= */
+
+    #final {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(255,225,168,.6), transparent 20%),
+        linear-gradient(
+          180deg,
+          #edb39d,
+          #d9947e,
+          #6f9c94
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+    }
+
+    .final-content {
+      max-width: 850px;
+    }
+
+    .final-small {
+      letter-spacing: 5px;
+      font-size: .8rem;
+      margin-bottom: 20px;
+    }
+
+    .final-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(4rem, 14vw, 9rem);
+      line-height: .8;
+      margin-bottom: 45px;
+    }
+
+    .final-text {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      line-height: 1.7;
+    }
+
+    .final-signature {
+      margin-top: 45px;
+      font-size: .8rem;
+      letter-spacing: 3px;
+      opacity: .8;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(40,35,30,.65);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 999;
+      backdrop-filter: blur(8px);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(600px, 100%);
+      background: var(--cream);
+      border-radius: 25px;
+      padding: 45px;
+      position: relative;
+      text-align: center;
+      animation: popup .35s ease;
+    }
+
+    @keyframes popup {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-box h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 3rem;
+      color: var(--tosca-dark);
+      margin-bottom: 20px;
+    }
+
+    .modal-box p {
+      line-height: 1.9;
+    }
+
+    .close {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      border: none;
+      background: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--brown);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      section {
+        padding: 80px 6%;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .photo img {
+        height: 220px;
+      }
+
+      .friends-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .sun {
+        width: 120px;
+        height: 120px;
+        right: 5%;
+        top: 10%;
+      }
+    }
+
+    @media (max-width: 500px) {
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .friends-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .modal-box {
+        padding: 35px 25px;
+      }
+
+      .modal-box h3 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       OPENING
+  ========================== -->
+
+  <section id="opening">
+
+    <div class="sun"></div>
+
+    <div class="opening-content">
+
+      <div class="opening-small">
+        KKN-PPM UGM · DESA SANGIANG
+      </div>
+
+      <h1 class="opening-title">
+        SANGIANGKU
+      </h1>
+
+      <p class="opening-subtitle">
+        sebuah tempat, empat belas nama,
+        dan begitu banyak cerita.
+      </p>
+
+      <button class="start-button" onclick="startStory()">
+        Buka cerita kita
+      </button>
+
+    </div>
+
+    <div class="scroll-text">
+      SCROLL TO BEGIN
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       INTRO
+  ========================== -->
+
+  <section id="intro">
+
+    <div class="intro-box">
+
+      <h2>Kita Pernah di Sini.</h2>
+
+      <p>
+        Pada suatu waktu, kita datang ke sebuah tempat
+        bernama <span class="highlight">Sangiang</span>.
+      </p>
+
+      <br>
+
+      <p>
+        Mungkin awalnya hanya sebuah lokasi
+        dalam perjalanan KKN.
+        Tapi tanpa sadar,
+        tempat ini menjadi bagian dari cerita
+        yang akan kita bawa pulang.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       GALLERY
+  ========================== -->
+
+  <section id="gallery">
+
+    <div class="section-title">
+
+      <div class="small">
+        our little memories
+      </div>
+
+      <h2>Yang Pernah Kita Jalani</h2>
+
+      <p>
+        Tambahkan foto-foto perjalanan kalian di sini.
+      </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+      <!--
+        GANTI nama file foto di bawah.
+        Contoh:
+        foto1.jpg
+        foto2.jpg
+        foto3.jpg
+
+        Upload file tersebut ke folder yang sama
+        dengan index.html di GitHub.
+      -->
+
+      <div class="photo" style="--rotation:-2deg">
+        <img src="foto1.jpg" alt="Kenangan Sangiang">
+        <p>Hari pertama.</p>
+      </div>
+
+      <div class="photo" style="--rotation:2deg">
+        <img src="foto2.jpg" alt="Kenangan Sangiang">
+        <p>Mulai mengenal satu sama lain.</p>
+      </div>
+
+      <div class="photo" style="--rotation:-1deg">
+        <img src="foto3.jpg" alt="Kenangan Sangiang">
+        <p>Hari-hari yang ternyata cepat berlalu.</p>
+      </div>
+
+      <div class="photo" style="--rotation:2deg">
+        <img src="foto4.jpg" alt="Kenangan Sangiang">
+        <p>Capek, tapi tetap jalan.</p>
+      </div>
+
+      <div class="photo" style="--rotation:-2deg">
+        <img src="foto5.jpg" alt="Kenangan Sangiang">
+        <p>Hal-hal kecil yang akan dirindukan.</p>
+      </div>
+
+      <div class="photo" style="--rotation:1deg">
+        <img src="foto6.jpg" alt="Kenangan Sangiang">
+        <p>Sampai akhirnya tiba di sini.</p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FRIENDS
+  ========================== -->
+
+  <section id="friends">
+
+    <div class="section-title">
+
+      <div class="small">
+        for you
+      </div>
+
+      <h2>Empat Belas Nama</h2>
+
+      <p>
+        Klik nama kalian.
+        Ada sedikit sesuatu yang ingin kusampaikan.
+      </p>
+
+    </div>
+
+
+    <div class="friends-grid">
+
+      <button class="friend-card" onclick="openMessage('Azry')">
+        <div class="friend-number">01</div>
+        <div class="friend-name">Azry</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Ardra')">
+        <div class="friend-number">02</div>
+        <div class="friend-name">Ardra</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Faiz')">
+        <div class="friend-number">03</div>
+        <div class="friend-name">Faiz</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Pinto')">
+        <div class="friend-number">04</div>
+        <div class="friend-name">Pinto</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Auni')">
+        <div class="friend-number">05</div>
+        <div class="friend-name">Auni</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Elsa')">
+        <div class="friend-number">06</div>
+        <div class="friend-name">Elsa</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Weda')">
+        <div class="friend-number">07</div>
+        <div class="friend-name">Weda</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Najwa')">
+        <div class="friend-number">08</div>
+        <div class="friend-name">Najwa</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Alqin')">
+        <div class="friend-number">09</div>
+        <div class="friend-name">Alqin</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Puan')">
+        <div class="friend-number">10</div>
+        <div class="friend-name">Puan</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Fathia')">
+        <div class="friend-number">11</div>
+        <div class="friend-name">Fathia</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Kinan')">
+        <div class="friend-number">12</div>
+        <div class="friend-name">Kinan</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Salma')">
+        <div class="friend-number">13</div>
+        <div class="friend-name">Salma</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+      <button class="friend-card" onclick="openMessage('Amel')">
+        <div class="friend-number">14</div>
+        <div class="friend-name">Amel</div>
+        <div class="click-text">klik untuk membuka</div>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MEMORIES
+  ========================== -->
+
+  <section id="memories">
+
+    <div class="section-title">
+
+      <div class="small">
+        things we'll remember
+      </div>
+
+      <h2>Yang Akan Dirindukan</h2>
+
+    </div>
+
+    <div class="memory-cloud">
+
+      <div class="memory-word">tawa</div>
+      <div class="memory-word">lelah</div>
+      <div class="memory-word">rapat</div>
+      <div class="memory-word">makan bersama</div>
+      <div class="memory-word">perjalanan pulang</div>
+      <div class="memory-word">cerita random</div>
+      <div class="memory-word">panik sebelum acara</div>
+      <div class="memory-word">kerja sama</div>
+      <div class="memory-word">foto bersama</div>
+      <div class="memory-word">saling bantu</div>
+      <div class="memory-word">malam-malam panjang</div>
+      <div class="memory-word">dan kalian</div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FINAL
+  ========================== -->
+
+  <section id="final">
+
+    <div class="final-content">
+
+      <div class="final-small">
+        TERIMA KASIH
+      </div>
+
+      <h2 class="final-title">
+        SANGIANGKU
+      </h2>
+
+      <p class="final-text">
+
+        Mungkin nanti kita akan lupa tanggalnya.
+        Lupa detail-detail kecil yang pernah terjadi.
+
+        <br><br>
+
+        Tapi semoga kita tidak lupa,
+        bahwa pernah ada satu masa
+        ketika kita berjalan bersama
+        di sebuah tempat bernama Sangiang.
+
+        <br><br>
+
+        KKN mungkin telah selesai,
+        tetapi cerita kita tidak harus berhenti di sini.
+
+      </p>
+
+      <div class="final-signature">
+        SAMPAI BERTEMU DI PERJALANAN BERIKUTNYA
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       MODAL UCAPAN
+  ========================== -->
+
+  <div class="modal" id="messageModal">
+
+    <div class="modal-box">
+
+      <button class="close" onclick="closeMessage()">
+        ×
+      </button>
+
+      <h3 id="modalName"></h3>
+
+      <p id="modalMessage"></p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    function startStory() {
+
+      document.getElementById("intro").scrollIntoView({
+        behavior: "smooth"
+      });
+
+    }
+
+
+    const messages = {
+
+      "Azry":
+        "Terima kasih sudah menjadi bagian dari perjalanan ini. Semoga semua cerita yang kita buat di Sangiang selalu punya tempat kecil di ingatanmu.",
+
+      "Ardra":
+        "Terima kasih untuk semua cerita, tawa, dan momen yang pernah kita lewati bersama. Senang pernah berjalan dalam perjalanan yang sama denganmu.",
+
+      "Faiz":
+        "Terima kasih sudah menjadi bagian dari cerita Sangiang. Semoga setelah ini kita tetap menemukan alasan untuk bertemu dan bercerita lagi.",
+
+      "Pinto":
+        "Terima kasih untuk segala hal kecil yang membuat perjalanan ini terasa lebih ringan. Sampai jumpa di cerita berikutnya.",
+
+      "Auni":
+        "Terima kasih sudah hadir dan membuat perjalanan KKN ini menjadi lebih berwarna. Semoga kenangan kita tetap tinggal dengan cara yang baik.",
+
+      "Elsa":
+        "Terima kasih untuk semua tawa dan cerita yang pernah kita bagi. Sangiang akan selalu punya sedikit bagian tentang kita.",
+
+      "Weda":
+        "Terima kasih sudah menjadi teman seperjalanan. Semoga semua lelah yang pernah kita rasakan berubah menjadi cerita yang suatu hari bisa kita tertawakan bersama.",
+
+      "Najwa":
+        "Terima kasih sudah menjadi bagian dari perjalanan ini. Semoga kita selalu punya jalan untuk kembali bertemu.",
+
+      "Alqin":
+        "Terima kasih untuk semua momen selama perjalanan ini. Mungkin KKN selesai, tapi semoga pertemanan tidak ikut selesai.",
+
+      "Puan":
+        "Terima kasih sudah menemani perjalanan di Sangiang. Semoga suatu hari nanti kita bisa kembali bertemu dengan cerita yang lebih banyak.",
+
+      "Fathia":
+        "Terima kasih untuk setiap momen yang pernah kita lewati bersama. Senang pernah memiliki satu perjalanan yang sama denganmu.",
+
+      "Kinan":
+        "Terima kasih sudah menjadi bagian dari cerita ini. Semoga semua kenangan dari Sangiang selalu membawa senyum ketika diingat kembali.",
+
+      "Salma":
+        "Terima kasih untuk kebersamaan, cerita, dan semua hal kecil yang membuat perjalanan ini berarti. Sampai bertemu lagi.",
+
+      "Amel":
+        "Terima kasih sudah menjadi bagian dari Sangiangku. Semoga perjalanan ini menjadi salah satu cerita indah yang selalu kita ingat."
+
+    };
+
+
+    function openMessage(name) {
+
+      document.getElementById("modalName").innerText = name;
+
+      document.getElementById("modalMessage").innerText =
+        messages[name];
+
+      document
+        .getElementById("messageModal")
+        .classList.add("active");
+
+    }
+
+
+    function closeMessage() {
+
+      document
+        .getElementById("messageModal")
+        .classList.remove("active");
+
+    }
+
+
+    document
+      .getElementById("messageModal")
+      .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+          closeMessage();
+        }
+
+      });
+
+  </script>
+
+</body>
+</html>
+```
